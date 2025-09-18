@@ -1,0 +1,653 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement statement_list
+Rule 4     statement -> timeline_decl
+Rule 5     statement -> retrocausal_constraint
+Rule 6     statement -> assignment
+Rule 7     statement -> converge_statement
+Rule 8     timeline_decl -> TIMELINE ID ASSIGN expression SEMICOLON
+Rule 9     retrocausal_constraint -> ID RETROCAUSAL_OP expression SEMICOLON
+Rule 10    assignment -> ID ASSIGN expression SEMICOLON
+Rule 11    converge_statement -> CONVERGE LPAREN ID RPAREN SEMICOLON
+Rule 12    expression -> NUMBER
+Rule 13    expression -> ID
+Rule 14    expression -> list_expression
+Rule 15    expression -> function_call
+Rule 16    expression -> expression PLUS expression
+Rule 17    expression -> expression MINUS expression
+Rule 18    expression -> expression TIMES expression
+Rule 19    function_call -> CONVERGE LPAREN ID RPAREN
+Rule 20    list_expression -> LBRACKET number_list RBRACKET
+Rule 21    list_expression -> LBRACKET RBRACKET
+Rule 22    number_list -> NUMBER
+Rule 23    number_list -> NUMBER COMMA number_list
+
+Terminals, with rules where they appear
+
+ASSIGN               : 8 10
+COMMA                : 23
+CONVERGE             : 11 19
+ID                   : 8 9 10 11 13 19
+LBRACKET             : 20 21
+LPAREN               : 11 19
+MINUS                : 17
+NUMBER               : 12 22 23
+PLUS                 : 16
+RBRACKET             : 20 21
+RETROCAUSAL_OP       : 9
+RPAREN               : 11 19
+SEMICOLON            : 8 9 10 11
+TIMELINE             : 8
+TIMES                : 18
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment           : 6
+converge_statement   : 7
+expression           : 8 9 10 16 16 17 17 18 18
+function_call        : 15
+list_expression      : 14
+number_list          : 20 23
+program              : 0
+retrocausal_constraint : 5
+statement            : 2 3
+statement_list       : 1 3
+timeline_decl        : 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement statement_list
+    (4) statement -> . timeline_decl
+    (5) statement -> . retrocausal_constraint
+    (6) statement -> . assignment
+    (7) statement -> . converge_statement
+    (8) timeline_decl -> . TIMELINE ID ASSIGN expression SEMICOLON
+    (9) retrocausal_constraint -> . ID RETROCAUSAL_OP expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) converge_statement -> . CONVERGE LPAREN ID RPAREN SEMICOLON
+
+    TIMELINE        shift and go to state 8
+    ID              shift and go to state 9
+    CONVERGE        shift and go to state 10
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    timeline_decl                  shift and go to state 4
+    retrocausal_constraint         shift and go to state 5
+    assignment                     shift and go to state 6
+    converge_statement             shift and go to state 7
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+
+    $end            reduce using rule 1 (program -> statement_list .)
+
+
+state 3
+
+    (2) statement_list -> statement .
+    (3) statement_list -> statement . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement statement_list
+    (4) statement -> . timeline_decl
+    (5) statement -> . retrocausal_constraint
+    (6) statement -> . assignment
+    (7) statement -> . converge_statement
+    (8) timeline_decl -> . TIMELINE ID ASSIGN expression SEMICOLON
+    (9) retrocausal_constraint -> . ID RETROCAUSAL_OP expression SEMICOLON
+    (10) assignment -> . ID ASSIGN expression SEMICOLON
+    (11) converge_statement -> . CONVERGE LPAREN ID RPAREN SEMICOLON
+
+    $end            reduce using rule 2 (statement_list -> statement .)
+    TIMELINE        shift and go to state 8
+    ID              shift and go to state 9
+    CONVERGE        shift and go to state 10
+
+    statement                      shift and go to state 3
+    statement_list                 shift and go to state 11
+    timeline_decl                  shift and go to state 4
+    retrocausal_constraint         shift and go to state 5
+    assignment                     shift and go to state 6
+    converge_statement             shift and go to state 7
+
+state 4
+
+    (4) statement -> timeline_decl .
+
+    TIMELINE        reduce using rule 4 (statement -> timeline_decl .)
+    ID              reduce using rule 4 (statement -> timeline_decl .)
+    CONVERGE        reduce using rule 4 (statement -> timeline_decl .)
+    $end            reduce using rule 4 (statement -> timeline_decl .)
+
+
+state 5
+
+    (5) statement -> retrocausal_constraint .
+
+    TIMELINE        reduce using rule 5 (statement -> retrocausal_constraint .)
+    ID              reduce using rule 5 (statement -> retrocausal_constraint .)
+    CONVERGE        reduce using rule 5 (statement -> retrocausal_constraint .)
+    $end            reduce using rule 5 (statement -> retrocausal_constraint .)
+
+
+state 6
+
+    (6) statement -> assignment .
+
+    TIMELINE        reduce using rule 6 (statement -> assignment .)
+    ID              reduce using rule 6 (statement -> assignment .)
+    CONVERGE        reduce using rule 6 (statement -> assignment .)
+    $end            reduce using rule 6 (statement -> assignment .)
+
+
+state 7
+
+    (7) statement -> converge_statement .
+
+    TIMELINE        reduce using rule 7 (statement -> converge_statement .)
+    ID              reduce using rule 7 (statement -> converge_statement .)
+    CONVERGE        reduce using rule 7 (statement -> converge_statement .)
+    $end            reduce using rule 7 (statement -> converge_statement .)
+
+
+state 8
+
+    (8) timeline_decl -> TIMELINE . ID ASSIGN expression SEMICOLON
+
+    ID              shift and go to state 12
+
+
+state 9
+
+    (9) retrocausal_constraint -> ID . RETROCAUSAL_OP expression SEMICOLON
+    (10) assignment -> ID . ASSIGN expression SEMICOLON
+
+    RETROCAUSAL_OP  shift and go to state 13
+    ASSIGN          shift and go to state 14
+
+
+state 10
+
+    (11) converge_statement -> CONVERGE . LPAREN ID RPAREN SEMICOLON
+
+    LPAREN          shift and go to state 15
+
+
+state 11
+
+    (3) statement_list -> statement statement_list .
+
+    $end            reduce using rule 3 (statement_list -> statement statement_list .)
+
+
+state 12
+
+    (8) timeline_decl -> TIMELINE ID . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 16
+
+
+state 13
+
+    (9) retrocausal_constraint -> ID RETROCAUSAL_OP . expression SEMICOLON
+    (12) expression -> . NUMBER
+    (13) expression -> . ID
+    (14) expression -> . list_expression
+    (15) expression -> . function_call
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (20) list_expression -> . LBRACKET number_list RBRACKET
+    (21) list_expression -> . LBRACKET RBRACKET
+    (19) function_call -> . CONVERGE LPAREN ID RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 17
+    LBRACKET        shift and go to state 22
+    CONVERGE        shift and go to state 23
+
+    expression                     shift and go to state 18
+    list_expression                shift and go to state 20
+    function_call                  shift and go to state 21
+
+state 14
+
+    (10) assignment -> ID ASSIGN . expression SEMICOLON
+    (12) expression -> . NUMBER
+    (13) expression -> . ID
+    (14) expression -> . list_expression
+    (15) expression -> . function_call
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (20) list_expression -> . LBRACKET number_list RBRACKET
+    (21) list_expression -> . LBRACKET RBRACKET
+    (19) function_call -> . CONVERGE LPAREN ID RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 17
+    LBRACKET        shift and go to state 22
+    CONVERGE        shift and go to state 23
+
+    expression                     shift and go to state 24
+    list_expression                shift and go to state 20
+    function_call                  shift and go to state 21
+
+state 15
+
+    (11) converge_statement -> CONVERGE LPAREN . ID RPAREN SEMICOLON
+
+    ID              shift and go to state 25
+
+
+state 16
+
+    (8) timeline_decl -> TIMELINE ID ASSIGN . expression SEMICOLON
+    (12) expression -> . NUMBER
+    (13) expression -> . ID
+    (14) expression -> . list_expression
+    (15) expression -> . function_call
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (20) list_expression -> . LBRACKET number_list RBRACKET
+    (21) list_expression -> . LBRACKET RBRACKET
+    (19) function_call -> . CONVERGE LPAREN ID RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 17
+    LBRACKET        shift and go to state 22
+    CONVERGE        shift and go to state 23
+
+    expression                     shift and go to state 26
+    list_expression                shift and go to state 20
+    function_call                  shift and go to state 21
+
+state 17
+
+    (13) expression -> ID .
+
+    SEMICOLON       reduce using rule 13 (expression -> ID .)
+    PLUS            reduce using rule 13 (expression -> ID .)
+    MINUS           reduce using rule 13 (expression -> ID .)
+    TIMES           reduce using rule 13 (expression -> ID .)
+
+
+state 18
+
+    (9) retrocausal_constraint -> ID RETROCAUSAL_OP expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+
+    SEMICOLON       shift and go to state 27
+    PLUS            shift and go to state 28
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+
+
+state 19
+
+    (12) expression -> NUMBER .
+
+    SEMICOLON       reduce using rule 12 (expression -> NUMBER .)
+    PLUS            reduce using rule 12 (expression -> NUMBER .)
+    MINUS           reduce using rule 12 (expression -> NUMBER .)
+    TIMES           reduce using rule 12 (expression -> NUMBER .)
+
+
+state 20
+
+    (14) expression -> list_expression .
+
+    SEMICOLON       reduce using rule 14 (expression -> list_expression .)
+    PLUS            reduce using rule 14 (expression -> list_expression .)
+    MINUS           reduce using rule 14 (expression -> list_expression .)
+    TIMES           reduce using rule 14 (expression -> list_expression .)
+
+
+state 21
+
+    (15) expression -> function_call .
+
+    SEMICOLON       reduce using rule 15 (expression -> function_call .)
+    PLUS            reduce using rule 15 (expression -> function_call .)
+    MINUS           reduce using rule 15 (expression -> function_call .)
+    TIMES           reduce using rule 15 (expression -> function_call .)
+
+
+state 22
+
+    (20) list_expression -> LBRACKET . number_list RBRACKET
+    (21) list_expression -> LBRACKET . RBRACKET
+    (22) number_list -> . NUMBER
+    (23) number_list -> . NUMBER COMMA number_list
+
+    RBRACKET        shift and go to state 32
+    NUMBER          shift and go to state 33
+
+    number_list                    shift and go to state 31
+
+state 23
+
+    (19) function_call -> CONVERGE . LPAREN ID RPAREN
+
+    LPAREN          shift and go to state 34
+
+
+state 24
+
+    (10) assignment -> ID ASSIGN expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+
+    SEMICOLON       shift and go to state 35
+    PLUS            shift and go to state 28
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+
+
+state 25
+
+    (11) converge_statement -> CONVERGE LPAREN ID . RPAREN SEMICOLON
+
+    RPAREN          shift and go to state 36
+
+
+state 26
+
+    (8) timeline_decl -> TIMELINE ID ASSIGN expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+
+    SEMICOLON       shift and go to state 37
+    PLUS            shift and go to state 28
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+
+
+state 27
+
+    (9) retrocausal_constraint -> ID RETROCAUSAL_OP expression SEMICOLON .
+
+    TIMELINE        reduce using rule 9 (retrocausal_constraint -> ID RETROCAUSAL_OP expression SEMICOLON .)
+    ID              reduce using rule 9 (retrocausal_constraint -> ID RETROCAUSAL_OP expression SEMICOLON .)
+    CONVERGE        reduce using rule 9 (retrocausal_constraint -> ID RETROCAUSAL_OP expression SEMICOLON .)
+    $end            reduce using rule 9 (retrocausal_constraint -> ID RETROCAUSAL_OP expression SEMICOLON .)
+
+
+state 28
+
+    (16) expression -> expression PLUS . expression
+    (12) expression -> . NUMBER
+    (13) expression -> . ID
+    (14) expression -> . list_expression
+    (15) expression -> . function_call
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (20) list_expression -> . LBRACKET number_list RBRACKET
+    (21) list_expression -> . LBRACKET RBRACKET
+    (19) function_call -> . CONVERGE LPAREN ID RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 17
+    LBRACKET        shift and go to state 22
+    CONVERGE        shift and go to state 23
+
+    expression                     shift and go to state 38
+    list_expression                shift and go to state 20
+    function_call                  shift and go to state 21
+
+state 29
+
+    (17) expression -> expression MINUS . expression
+    (12) expression -> . NUMBER
+    (13) expression -> . ID
+    (14) expression -> . list_expression
+    (15) expression -> . function_call
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (20) list_expression -> . LBRACKET number_list RBRACKET
+    (21) list_expression -> . LBRACKET RBRACKET
+    (19) function_call -> . CONVERGE LPAREN ID RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 17
+    LBRACKET        shift and go to state 22
+    CONVERGE        shift and go to state 23
+
+    expression                     shift and go to state 39
+    list_expression                shift and go to state 20
+    function_call                  shift and go to state 21
+
+state 30
+
+    (18) expression -> expression TIMES . expression
+    (12) expression -> . NUMBER
+    (13) expression -> . ID
+    (14) expression -> . list_expression
+    (15) expression -> . function_call
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (20) list_expression -> . LBRACKET number_list RBRACKET
+    (21) list_expression -> . LBRACKET RBRACKET
+    (19) function_call -> . CONVERGE LPAREN ID RPAREN
+
+    NUMBER          shift and go to state 19
+    ID              shift and go to state 17
+    LBRACKET        shift and go to state 22
+    CONVERGE        shift and go to state 23
+
+    expression                     shift and go to state 40
+    list_expression                shift and go to state 20
+    function_call                  shift and go to state 21
+
+state 31
+
+    (20) list_expression -> LBRACKET number_list . RBRACKET
+
+    RBRACKET        shift and go to state 41
+
+
+state 32
+
+    (21) list_expression -> LBRACKET RBRACKET .
+
+    SEMICOLON       reduce using rule 21 (list_expression -> LBRACKET RBRACKET .)
+    PLUS            reduce using rule 21 (list_expression -> LBRACKET RBRACKET .)
+    MINUS           reduce using rule 21 (list_expression -> LBRACKET RBRACKET .)
+    TIMES           reduce using rule 21 (list_expression -> LBRACKET RBRACKET .)
+
+
+state 33
+
+    (22) number_list -> NUMBER .
+    (23) number_list -> NUMBER . COMMA number_list
+
+    RBRACKET        reduce using rule 22 (number_list -> NUMBER .)
+    COMMA           shift and go to state 42
+
+
+state 34
+
+    (19) function_call -> CONVERGE LPAREN . ID RPAREN
+
+    ID              shift and go to state 43
+
+
+state 35
+
+    (10) assignment -> ID ASSIGN expression SEMICOLON .
+
+    TIMELINE        reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    CONVERGE        reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 10 (assignment -> ID ASSIGN expression SEMICOLON .)
+
+
+state 36
+
+    (11) converge_statement -> CONVERGE LPAREN ID RPAREN . SEMICOLON
+
+    SEMICOLON       shift and go to state 44
+
+
+state 37
+
+    (8) timeline_decl -> TIMELINE ID ASSIGN expression SEMICOLON .
+
+    TIMELINE        reduce using rule 8 (timeline_decl -> TIMELINE ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 8 (timeline_decl -> TIMELINE ID ASSIGN expression SEMICOLON .)
+    CONVERGE        reduce using rule 8 (timeline_decl -> TIMELINE ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 8 (timeline_decl -> TIMELINE ID ASSIGN expression SEMICOLON .)
+
+
+state 38
+
+    (16) expression -> expression PLUS expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+    SEMICOLON       reduce using rule 16 (expression -> expression PLUS expression .)
+    PLUS            shift and go to state 28
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+
+  ! PLUS            [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! MINUS           [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! TIMES           [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+
+
+state 39
+
+    (17) expression -> expression MINUS expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+    SEMICOLON       reduce using rule 17 (expression -> expression MINUS expression .)
+    PLUS            shift and go to state 28
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+
+  ! PLUS            [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! MINUS           [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! TIMES           [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+
+
+state 40
+
+    (18) expression -> expression TIMES expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+    SEMICOLON       reduce using rule 18 (expression -> expression TIMES expression .)
+    PLUS            shift and go to state 28
+    MINUS           shift and go to state 29
+    TIMES           shift and go to state 30
+
+  ! PLUS            [ reduce using rule 18 (expression -> expression TIMES expression .) ]
+  ! MINUS           [ reduce using rule 18 (expression -> expression TIMES expression .) ]
+  ! TIMES           [ reduce using rule 18 (expression -> expression TIMES expression .) ]
+
+
+state 41
+
+    (20) list_expression -> LBRACKET number_list RBRACKET .
+
+    SEMICOLON       reduce using rule 20 (list_expression -> LBRACKET number_list RBRACKET .)
+    PLUS            reduce using rule 20 (list_expression -> LBRACKET number_list RBRACKET .)
+    MINUS           reduce using rule 20 (list_expression -> LBRACKET number_list RBRACKET .)
+    TIMES           reduce using rule 20 (list_expression -> LBRACKET number_list RBRACKET .)
+
+
+state 42
+
+    (23) number_list -> NUMBER COMMA . number_list
+    (22) number_list -> . NUMBER
+    (23) number_list -> . NUMBER COMMA number_list
+
+    NUMBER          shift and go to state 33
+
+    number_list                    shift and go to state 45
+
+state 43
+
+    (19) function_call -> CONVERGE LPAREN ID . RPAREN
+
+    RPAREN          shift and go to state 46
+
+
+state 44
+
+    (11) converge_statement -> CONVERGE LPAREN ID RPAREN SEMICOLON .
+
+    TIMELINE        reduce using rule 11 (converge_statement -> CONVERGE LPAREN ID RPAREN SEMICOLON .)
+    ID              reduce using rule 11 (converge_statement -> CONVERGE LPAREN ID RPAREN SEMICOLON .)
+    CONVERGE        reduce using rule 11 (converge_statement -> CONVERGE LPAREN ID RPAREN SEMICOLON .)
+    $end            reduce using rule 11 (converge_statement -> CONVERGE LPAREN ID RPAREN SEMICOLON .)
+
+
+state 45
+
+    (23) number_list -> NUMBER COMMA number_list .
+
+    RBRACKET        reduce using rule 23 (number_list -> NUMBER COMMA number_list .)
+
+
+state 46
+
+    (19) function_call -> CONVERGE LPAREN ID RPAREN .
+
+    SEMICOLON       reduce using rule 19 (function_call -> CONVERGE LPAREN ID RPAREN .)
+    PLUS            reduce using rule 19 (function_call -> CONVERGE LPAREN ID RPAREN .)
+    MINUS           reduce using rule 19 (function_call -> CONVERGE LPAREN ID RPAREN .)
+    TIMES           reduce using rule 19 (function_call -> CONVERGE LPAREN ID RPAREN .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 38 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 38 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 38 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 39 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 39 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 39 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 40 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 40 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 40 resolved as shift
