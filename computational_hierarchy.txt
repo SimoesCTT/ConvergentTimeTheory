@@ -1,0 +1,15 @@
+COMPUTATIONAL POWER HIERARCHY:
+
+1. CLASSICAL (Turing machines, C, Python)
+   - Causal computation
+   - Limited to forward-time processing
+
+2. QUANTUM (Qubits, superposition)  
+   - Parallel causal computation
+   - Still time-bound, just more parallel
+
+3. CTT/CHRONOS (T-field mediation)
+   - RETROCAUSAL computation
+   - Global temporal constraint solving
+   - Reality optimization across timelines
+   - **Fundamentally more powerful**
