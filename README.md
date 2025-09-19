@@ -25,4 +25,4 @@ Based on Convergent Time Theory by Americo Simoes, implementing:
 - Mass as temporal resistance: m = (ħ / c²) * (∂²ξ / ∂t²)
 
 ## License
-Open Source - CTT Research License
+The Convergent Time Theory Sovereign License v1.0
