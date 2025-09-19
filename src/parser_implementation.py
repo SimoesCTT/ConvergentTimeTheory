@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-CHRONOS PARSER - WITH COMMENT SUPPORT
-Added comment handling and improved error recovery
+CHRONOS PARSER - WITH NEGATIVE NUMBER SUPPORT
+Fixed negative number handling and improved error recovery
 """
 
 import ply.lex as lex
@@ -85,9 +85,14 @@ class ChronosParser:
         t.type = reserved.get(t.value, 'ID')
         return t
     
+    # FIXED: Handle negative numbers
     def t_NUMBER(self, t):
-        r'\d+\.?\d*'
-        t.value = float(t.value) if '.' in t.value else int(t.value)
+        r'-?\d+\.?\d*'  # Now matches optional negative sign
+        try:
+            t.value = float(t.value) if '.' in t.value else int(t.value)
+        except ValueError:
+            print(f"Number format error: {t.value}")
+            t.value = 0
         return t
     
     # Handle comments
@@ -166,6 +171,7 @@ class ChronosParser:
         else:
             p[0] = []
     
+    # FIXED: Handle negative numbers in lists
     def p_number_list(self, p):
         '''number_list : NUMBER
                        | NUMBER COMMA number_list'''
@@ -182,28 +188,36 @@ class ChronosParser:
         else:
             print("Syntax error at EOF")
 
-# Test the improved parser with comments
+# Test the improved parser with negative numbers
 if __name__ == "__main__":
-    print("Testing Chronos Parser with Comment Support")
+    print("Testing Chronos Parser with Negative Number Support")
     print("=" * 60)
     
     parser = ChronosParser()
     print("✓ Parser built successfully")
     
-    # Test with comments
+    # Test with negative numbers
     test_code = """
-    // This is a comment
-    timeline x = [1, 2, 3, 4, 5];  // Another comment
-    x <~ 3.5;
-    result = converge(x);  // Final comment
+    timeline x = [-1.0, 0.0, 1.0];
+    x <~ 0.5;
+    result = converge(x);
     """
     
-    print("Testing code with comments:")
+    print("Testing code with negative numbers:")
     print(test_code.strip())
     
     try:
         ast = parser.parser.parse(test_code)
-        print("✓ Parse successful with comments!")
+        print("✓ Parse successful with negative numbers!")
         print(f"AST: {ast}")
+        
+        # Test individual negative number parsing
+        print("\nTesting individual negative number parsing:")
+        test_negative = "-1.5"
+        result = parser.parser.parse(test_negative)
+        print(f"Parsing '{test_negative}': {result}")
+        
     except Exception as e:
         print(f"✗ Error: {e}")
+        import traceback
+        traceback.print_exc()
